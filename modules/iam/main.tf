@@ -9,7 +9,7 @@ resource "aws_iam_role" "kinesis-101-role" {
         {
             "Action": "sts:AssumeRole",
             "Principal": {
-               "Service": [ "lambda.amazonaws.com", "kinesis.amazonaws.com"]
+               "Service": [ "lambda.amazonaws.com", "kinesis.amazonaws.com", "firehose.amazonaws.com"]
             },
             "Effect": "Allow",
             "Sid": ""
