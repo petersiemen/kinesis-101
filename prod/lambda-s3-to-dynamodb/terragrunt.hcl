@@ -5,17 +5,23 @@ include {
 dependency "s3" {
   config_path = "../s3"
   mock_outputs_allowed_terraform_commands = [
-    "validate", "plan"]
+    "validate",
+    "plan"]
 
   mock_outputs = {
-    bucket_arn = "fake__bucket_arn"
+    twitter_feed_bucket_arn = "fake__twitter_feed_bucket_arn"
+    twitter_feed_bucket_name = "fake__twitter_feed_bucket_name"
+    twitter_feed_bucket_id = "fake__twitter_feed_bucket_id"
+    lambda_functions_bucket_arn = "fake__lambda_functions_bucket_arn"
+    lambda_functions_bucket_name = "fake__lambda_functions_bucket_name"
   }
 }
 
 dependency "iam" {
   config_path = "../iam"
   mock_outputs_allowed_terraform_commands = [
-    "validate", "plan"]
+    "validate",
+    "plan"]
 
   mock_outputs = {
     role_arn = "fake__role_arn"
@@ -23,7 +29,22 @@ dependency "iam" {
 }
 
 
+dependency "dynamodb" {
+  config_path = "../dynamodb"
+  mock_outputs_allowed_terraform_commands = [
+    "validate",
+    "plan"]
+
+  mock_outputs = {
+    dynamodb_tweets_table_name = "fake__dynamodb_tweets_table_name"
+  }
+}
+
+
 inputs = {
-  s3__bucket_arn = dependency.s3.outputs.bucket_arn
+  s3__lambda_functions_bucket_name = dependency.s3.outputs.lambda_functions_bucket_name
+  s3__twitter_feed_bucket_id = dependency.s3.outputs.twitter_feed_bucket_id
+  s3__twitter_feed_bucket_arn = dependency.s3.outputs.twitter_feed_bucket_arn
   iam__role_arn = dependency.iam.outputs.role_arn
+  dynamodb_tweets_table_name = dependency.dynamodb.outputs.tweets_table_name
 }

@@ -8,7 +8,10 @@ dependency "s3" {
     "validate", "plan"]
 
   mock_outputs = {
-    bucket_arn = "fake__bucket_arn"
+    twitter_feed_bucket_arn = "fake__twitter_feed_bucket_arn"
+    twitter_feed_bucket_name = "fake__twitter_feed_bucket_name"
+    lambda_functions_bucket_arn = "fake__lambda_functions_bucket_arn"
+    lambda_functions_bucket_name = "fake__lambda_functions_bucket_name"
   }
 }
 
@@ -24,6 +27,6 @@ dependency "iam" {
 
 
 inputs = {
-  s3__bucket_arn = dependency.s3.outputs.bucket_arn
+  s3__twitter_feed_bucket_arn = dependency.s3.outputs.twitter_feed_bucket_arn
   iam__role_arn = dependency.iam.outputs.role_arn
 }

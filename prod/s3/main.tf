@@ -1,9 +1,9 @@
 variable "env" {}
 variable "organization" {}
 
-module "s3" {
+module "acme-twitter-feed-bucket" {
   source = "../../modules/s3"
-  bucket_name = "acme-twitter"
+  bucket_name = "acme-twitter-feed"
 }
 
 module "lambda-functions-bucket" {

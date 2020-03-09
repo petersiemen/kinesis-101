@@ -3,3 +3,4 @@
 .terraform
 generated-backend.tf
 generated-provider.tf
+node_modules

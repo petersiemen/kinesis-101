@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "tweets" {
-  name = "rawTweets"
+  name = var.tweets_table_name
   billing_mode = "PROVISIONED"
   read_capacity = 5
   write_capacity = 5
@@ -12,7 +12,7 @@ resource "aws_dynamodb_table" "tweets" {
 }
 
 resource "aws_dynamodb_table" "sentiment" {
-  name = "twitterSentiment"
+  name = var.sentiment_table_name
   billing_mode = "PROVISIONED"
   read_capacity = 5
   write_capacity = 5
