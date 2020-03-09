@@ -8,6 +8,9 @@ resource "aws_lambda_function" "s3-to-dynamodb" {
   runtime = "nodejs12.x"
 
   role = var.role_arn
+  tags = {
+    Prefix = var.lambda_functions_bucket_prefix
+  }
 
   environment {
     variables = {
@@ -30,14 +33,13 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
 }
 
 
+resource "aws_lambda_permission" "s3" {
+  statement_id = "AllowExecutionFromS3"
+  action = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.s3-to-dynamodb.function_name
+  principal = "s3.amazonaws.com"
 
- resource "aws_lambda_permission" "s3" {
-   statement_id  = "AllowExecutionFromS3"
-   action        = "lambda:InvokeFunction"
-   function_name = aws_lambda_function.s3-to-dynamodb.function_name
-   principal     = "s3.amazonaws.com"
-
-   # The "/*/*" portion grants access from any method on any resource
-   # within the API Gateway REST API.
-   source_arn = var.tweets_bucket_arn
- }
+  # The "/*/*" portion grants access from any method on any resource
+  # within the API Gateway REST API.
+  source_arn = var.tweets_bucket_arn
+}

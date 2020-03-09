@@ -28,7 +28,7 @@ resource "aws_kinesis_firehose_delivery_stream" "s3_stream" {
 
   s3_configuration {
     role_arn = var.firehose_role_arn
-    bucket_arn = var.firehose_taget_bucket_arn
+    bucket_arn = var.firehose_target_bucket_arn
     buffer_size = 1
     buffer_interval = 60
   }
