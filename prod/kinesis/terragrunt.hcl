@@ -3,7 +3,7 @@ include {
 }
 
 dependency "twitter-feed-s3-bucket" {
-  config_path = "../"
+  config_path = "../twitter-feed-s3-bucket"
   mock_outputs_allowed_terraform_commands = [
     "validate", "plan"]
 

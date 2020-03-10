@@ -1,6 +1,9 @@
 resource "aws_lambda_function" "s3-to-dynamodb" {
   function_name = "s3-to-dynamodb"
 
+  memory_size = 128
+  timeout = 30
+
   s3_bucket = var.lambda_functions_bucket
   s3_key = var.lambda_functions_bucket_prefix
 

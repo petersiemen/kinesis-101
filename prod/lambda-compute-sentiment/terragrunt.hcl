@@ -56,5 +56,6 @@ inputs = {
   twitter_feed_s3__bucket_id = dependency.twitter-feed-s3-bucket.outputs.bucket_id
   twitter_feed_s3__bucket_arn = dependency.twitter-feed-s3-bucket.outputs.bucket_arn
   iam__role_arn = dependency.iam.outputs.role_arn
-  dynamodb__tweets_table_name = dependency.dynamodb.outputs.tweets_table_name
+  dynamodb__tweets_table_stream_arn = dependency.dynamodb.outputs.tweets_table_stream_arn
+  dynamodb__sentiment_table_name = dependency.dynamodb.outputs.sentiment_table_name
 }
